@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Solo Leveling Gym Game</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; }
+  h1 { text-align: center; }
+  button { font-size: 1.2em; padding: 10px 20px; margin: 10px; }
+  #status { margin-top: 20px; font-size: 1.1em; }
+</style>
+</head>
+<body>
+  <h1>Solo Leveling Gym Game</h1>
+  
+  <p>Do your exercises to level up!</p>
+  
+  <button id="pushupBtn">Do Press-up</button>
+  <button id="situpBtn">Do Sit-up</button>
+  <button id="squatBtn">Do Squat</button>
+  
+  <div id="status">
+    <p>Press-ups done: <span id="pushupCount">0</span></p>
+    <p>Sit-ups done: <span id="situpCount">0</span></p>
+    <p>Squats done: <span id="squatCount">0</span></p>
+    <p>Your Level: <span id="level">1</span></p>
+    <p>Reps needed for next level: <span id="nextLevelReps">10</span></p>
+  </div>
+  
+<script>
+  let pushups = 0;
+  let situps = 0;
+  let squats = 0;
+  let level = 1;
+  let nextLevelReps = 10;
+  
+  function updateUI() {
+    document.getElementById('pushupCount').textContent = pushups;
+    document.getElementById('situpCount').textContent = situps;
+    document.getElementById('squatCount').textContent = squats;
+    document.getElementById('level').textContent = level;
+    document.getElementById('nextLevelReps').textContent = nextLevelReps;
+  }
+  
+  function checkLevelUp() {
+    let totalReps = pushups + situps + squats;
+    if (totalReps >= nextLevelReps) {
+      level++;
+      nextLevelReps += 10;
+      alert(`Level Up! You are now level ${level}!`);
+      updateUI();
+    }
+  }
+  
+  document.getElementById('pushupBtn').addEventListener('click', () => {
+    pushups++;
+    updateUI();
+    checkLevelUp();
+  });
+  
+  document.getElementById('situpBtn').addEventListener('click', () => {
+    situps++;
+    updateUI();
+    checkLevelUp();
+  });
+  
+  document.getElementById('squatBtn').addEventListener('click', () => {
+    squats++;
+    updateUI();
+    checkLevelUp();
+  });
+  
+  updateUI();
+</script>
+</body>
+</html>
